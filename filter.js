@@ -100,3 +100,60 @@ export function alert(str) {
     },1500);
 }
 
+
+
+
+//弹框提示
+function tip(txt) {
+	$('.tip-txt').html(txt);
+	$('.tip').show();
+	setTimeout("$('.tip').fadeOut()", 2000);
+}
+
+/*验证手机号*/
+function chenckPhone(phone) {
+	var verifyPhone = phone.match(/^(?:13\d|14\d|15\d|17\d|18\d)\d{5}(\d{3}|\*{3})$/);
+	if (phone.length == 0) {
+		tip('手机号不能为空！');
+		// return '手机号不能为空！';
+	} else if (0 < phone.length && phone.length < 11) {
+		tip('手机号不足11位！');
+		// return '手机号不足11位！';
+	} else if (phone.length == 11) {
+		if (!verifyPhone) {
+			tip('手机号格式不正确！');
+			// return '手机号格式不正确！';
+		} else {
+			return true;
+		}
+	}
+}
+
+/*检测两次密码*/
+function doublePwd(pwd1, pwd2) {
+	if (pwd1.length == 0) {
+		return '密码不能为空！';
+	} else if (0 < pwd1.length && pwd1.length < 6) {
+		return '密码不足6位！';
+	} else if (6 <= pwd1.length && pwd1.length < 17) {
+		if (pwd1 != pwd2) {
+			return '两次输入的密码不一致！';
+		} else if (pwd1 == pwd2) {
+			return true;
+		}
+	}
+}
+
+/* 返回上一个页面*/
+function goUrl(){
+    window.location.href=document.referrer;
+}
+
+// 获取连接参数
+function getQueryString(name) {  
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+    var r = window.location.search.substr(1).match(reg);  
+    if (r != null) return unescape(r[2]);  
+    return null;  
+}
+
