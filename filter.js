@@ -172,3 +172,56 @@ function getQueryString(name) {
     return null;  
 }
 
+
+
+//年月日时分秒
+function formatDate(time) {
+                var datestr = new Date(time);
+                var datey = datestr.getFullYear();
+                var datem = datestr.getMonth() + 1;
+                var dated = datestr.getDate();
+                var dateh = datestr.getHours();
+                var datemm = datestr.getMinutes();
+                var dates = datestr.getSeconds();
+                return datey + '年' + datem + '月' + dated + '日 ';
+            }
+            function formatetime(time) {
+                var nowTime = new Date();
+                var endTime = new Date(time);
+                var format = '';
+                var datestr = nowTime.getTime() - endTime.getTime();
+                if (datestr > 0) {
+                    var day = Math.floor(datestr / 86400000);
+                    var hour = Math.floor((datestr / 3600000) / 24);
+                    var min = Math.floor((datestr / 60000) / 60);
+                    var sec = Math.floor((datestr / 1000) / 60);
+                    hour = hour < 10 ? "0" + hour : hour;
+                    min = min < 10 ? "0" + min : min;
+                    sec = sec < 10 ? "0" + sec : sec;
+                    if (day > 0) {
+                        format = day + "天前";
+                    }
+                    if (day <= 0 && hour > 0) {
+                        format = hour + "小时前";
+                    }
+                    if (day <= 0 && hour <= 0 && min > 0) {
+                        format = min + "分钟前";
+                    }
+                    if (day <= 0 && hour <= 0 && min <= 0) {
+                        format = sec + "秒前";
+                    }
+                }
+                return format;
+            }
+
+
+js获取当前年月日-YYYYmmDD格式的实现代码
+
+var nowDate = new Date();
+ var year = nowDate.getFullYear();
+ var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1)
+  : nowDate.getMonth() + 1;
+ var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate
+  .getDate();
+ var dateStr = year + "-" + month + "-" + day;
+
