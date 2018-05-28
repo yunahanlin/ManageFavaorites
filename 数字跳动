@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://static1.niwodai.com/Public/Static/201404/js/jquery-1.7.2.min.js"></script>
+    <!--<script src="counto.js"></script>-->
+    <script src="https://static1.niwodai.com/Public/Static/nwd/active/2017/08/7operationReport/js/count.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div class="num" datanum="4589">0</div>
+    <!--<div class="num" datanum="99,123,456">0</div>-->
+</div>
+
+<span class="timer" data-from="0" data-to="4589"
+      data-speed="1000" data-refresh-interval="100"></span>
+
+<script type="text/javascript">
+    $('.timer').countTo();
+</script>
+
+    <script>
+
+        var ele = {};
+        ele.initElem = function (eleName) {
+//            console.log()
+            eleName.find(".num").each(function (i, e) {
+
+                var o = $(this),
+                    t = 10,
+                    changenum = o.attr('datanum'),
+                    val = parseInt(changenum.replace(/,/g,''))/t;
+                    console.log(val)
+                var setIntervalId = window.setInterval(function () {
+                        if (t--) {
+                            var v = parseInt(val * (10 - t)).toString();
+//                            console.log(v)
+                            var s = v.split("");
+                            for (var i = s.length-4; i >= 0;i -= 3) s[i] += ","
+                            o.text(s.join(''))
+                        }
+                        else {clearInterval(setIntervalId);}
+                    },100)
+            })
+        };
+        var $wrap = $('#wrap');
+        ele.initElem($wrap);
+
+    </script>
+</body>
+</html>
